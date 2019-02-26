@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+/*
+div.tooltip {
+  position: absolute;
+  left: 75px;
+  text-align: center;
+  height: 12px;
+  padding: 8px;
+  font-size: 13px;
+  font-family: 'Proxima-Nova', sans-serif;
+  background: #FFFFFF;
+  border: 1px solid #989898;
+  pointer-events: none;
+}
+*/
+</style>
+<body>
+  <h2 class="dateLabel"></h2>
+	<div class="slider"></div>
+	<div id="map"></div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
+
+<script>
+
+var legendText = ["0", "5", "10", "15", "20", "25", "30", "35"];
+var legendColors = ["#fff7bc", "#fee391", "#fec44f", "#fe9929", "#ec7014", "#cc4c02", "#993404", "#662506"];
+
+//Creates tooltip and makes it invisiblae
+// var div = d3.select("body").append("div")
+//   .attr("class", "tooltip")
+//   .style("opacity", 0);
+
+//Sets dimensions
+// var margin = {top: 10, left: 10, bottom: 10, right: 10}
+//   , width = window.outerWidth
+//   , width = width - margin.left - margin.right
+//   , mapRatio = .5
+//   , height = width * mapRatio;
+
+var margin = {top: 20, right: 20, bottom: 20, left: 20};
+  	width = 600 - margin.left - margin.right,
+  	height = 350 - margin.top - margin.bottom,
+  	formatPercent = d3.format(".1%");
+
+var map = d3.select("#map").append("svg")
+	.attr("width", width + margin.left + margin.right)
+	.attr("height", height + margin.top + margin.bottom)
+	.append("g")
+		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+tooltip = d3.select("body").append("div")
+	.attr("class", "tooltip")
+	.style("opacity", 0);
+
+//Tells the map what projection to use
+var projection = d3.geo.albersUsa()
+    .scale(width)
+    .translate([width / 2, height / 2]);
+
+//Tells the map how to draw the paths from the projection
+var path = d3.geo.path()
+    .projection(projection);
+
+// //Appened svg to page
+// var map = d3.select(".g-chart").append("svg")
+//   .style('height', height + 'px')
+//   .style('width', width + 'px');
+
+//Load the files
+queue()
+    .defer(d3.json, "us.json")
+    .defer(d3.csv, "air_pollution.csv")
+    .await(ready);
+
+// //Moves selection to front
+// d3.selection.prototype.moveToFront = function() {
+//   return this.each(function(){
+//     this.parentNode.appendChild(this);
+//   });
+// };
+//
+// //Moves selection to back
+// d3.selection.prototype.moveToBack = function() {
+//   return this.each(function() {
+//   var firstChild = this.parentNode.firstChild;
+//     if (firstChild) {
+//       this.parentNode.insertBefore(this, firstChild);
+//     }
+//   });
+// };
+
+function ready(error, us, data) {
+  if (error) throw error;
+
+  var states = topojson.feature(us, us.objects.states);
+
+  var color = d3.scale.threshold()
+  		.domain([1, 5, 10, 15, 20, 25, 30, 40, 60, 170])
+  		.range(["#d9e0f2", "#A0FF00", "#00FF00","#008000", "#FFE000", "#FF8000", "#FF6000","#cc4c02", "#993404", "#662506"]);
+  // "#d9e0f2", "#99b2dc", "#5e8dc9", "#2f5491", "#0e2344"
+  //Sets color scale
+  // var numMedian = d3.median(data, function(d) { return d.DailyAQI;});
+  // var quantize = d3.scale.quantize()
+  //   .domain([0, numMedian])
+  //   .range(d3.range(5).map(function(i) { return "q" + i + "-9"; }));
+
+  data.forEach(function(d){
+    d.yyyymmdd = +d.yyyymmdd;
+    d.fips = +d.fips;
+    d.DailyAQI = +d.DailyAQI;
+  })
+
+  // //Pair data with state id
+  // var dataByFIPS = {};
+  // data.forEach(function(d) { dataByFIPS[d.FIPS] = +d.DailyAQI; });
+  //
+  // //Pair state name with state id
+  // var stateByFIPS = {};
+  // data.forEach(function(d) { stateByFIPS[d.FIPS] = d.state; });
+  var dataByStateByDate = d3.nest()
+  		.key(function(d) { return d.fips; })
+  		.key(function(d) { return d.yyyymmdd; })
+  		.map(data);
+
+
+  states.features.forEach(function(state) {
+    state.properties.yyyymmdd = dataByStateByDate[+state.id]
+    if(typeof state.properties.yyyymmdd === 'undefined'){
+      state.properties.yyyymmdd = "";
+    }
+	});
+
+//   states.features.forEach(function(state) {
+//   if(typeof  state.properties.yyyymmdd === "undefined"){
+//      console.log('undefined');
+//   }else{
+//     num =
+//     console.log(state.properties.yyyymmdd[20150101][0].DailyAQI);
+//     // d.properties.yyyymmdd[20150101][0].DailyAQI
+//   }
+// });
+  // console.log(states.features);
+  // console.log(dataByStateByDate);
+  //Appends chart headline
+  // d3.select(".g-hed").text("Map headline goes here");
+  //
+  // //Appends chart intro text
+  // d3.select(".g-intro").text("Map intro text goes here. Write a short sentence describing the map here.");
+
+
+  var stateShapes = map.selectAll(".state")
+    .data(states.features)
+    .enter()
+    .append("path")
+    .attr("class", "state")
+    .attr("d", path)
+
+  stateShapes.on("mouseover", function(d) {
+      tooltip.transition()
+      .duration(250)
+      .style("opacity", 1);
+      tooltip.html(
+      "<p><strong>" + d.properties.yyyymmdd[20150101][0].county + ", " + d.properties.yyyymmdd[20150101][0].state + "</strong></p>" +
+      "<table><tbody><tr><td class='wide'>Smoking rate in 1996:</td><td>" + formatPercent((d.properties.yyyymmdd[20150101][0].rate)/100) + "</td></tr>" +
+      "<tr><td>Smoking rate in 2012:</td><td>" + formatPercent((d.properties.yyyymmdd[20150101][0].rate)/100) + "</td></tr>" +
+      "<tr><td>Change:</td><td>" + formatPercent((d.properties.yyyymmdd[20150101][0].rate-d.properties.yyyymmdd[20150101][0].rate)/100) + "</td></tr></tbody></table>"
+      )
+      .style("left", (d3.event.pageX + 15) + "px")
+      .style("top", (d3.event.pageY - 28) + "px");
+    })
+    .on("mouseout", function(d) {
+      tooltip.transition()
+      .duration(250)
+      .style("opacity", 0);
+    });
+
+    var legend = map.append("g")
+		.attr("id", "legend");
+
+	var legenditem = legend.selectAll(".legenditem")
+		.data(d3.range(8))
+		.enter()
+		.append("g")
+			.attr("class", "legenditem")
+			.attr("transform", function(d, i) { return "translate(" + i * 31 + ",0)"; });
+
+	legenditem.append("rect")
+		.attr("x", width - 240)
+		.attr("y", -7)
+		.attr("width", 30)
+		.attr("height", 6)
+		.attr("class", "rect")
+		.style("fill", function(d, i) { return legendColors[i]; });
+
+	legenditem.append("text")
+		.attr("x", width - 240)
+		.attr("y", -10)
+		.style("text-anchor", "middle")
+		.text(function(d, i) { return legendText[i]; });
+
+
+  function convertTime(timedata){
+      year = '2015';
+      if(timedata <= 31){
+        month = '01';
+        day = timedata;
+        if(day < 10){
+          day = '0'+ day
+        }
+        return year+month+day
+      }
+      else if ( 31 < timedata && timedata <= 59 ) {
+        month = '02';
+        day = timedata - 31;
+        if(day < 10){
+          day = '0'+ day
+        }
+        return year+month+day
+      }
+      else if ( 59 < timedata && timedata <= 90 ) {
+        month = '03';
+        day = timedata - 59;
+        if(day < 10){
+          day = '0'+ day
+        }
+        return year+month+day
+      }
+      else if ( 90 < timedata && timedata <= 120 ) {
+        month = '04';
+        day = timedata - 90;
+        if(day < 10){
+          day = '0'+ day
+        }
+        return year+month+day
+      }
+      else if ( 120 < timedata && timedata <= 151 ) {
+        month = '05';
+        day = timedata - 120;
+        if(day < 10){
+          day = '0'+ day
+        }
+        return year+month+day
+      }
+      else if ( 151 < timedata && timedata <= 181 ) {
+        month = '06';
+        day = timedata - 151;
+        if(day < 10){
+          day = '0'+ day
+        }
+        return year+month+day
+      }
+      else if ( 181 < timedata && timedata <= 212 ) {
+        month = '07';
+        day = timedata - 181;
+        if(day < 10){
+          day = '0'+ day
+        }
+        return year+month+day
+      }
+      else if ( 212 < timedata && timedata <= 243 ) {
+        month = '08';
+        day = timedata - 212;
+        if(day < 10){
+          day = '0'+ day
+        }
+        return year+month+day
+      }
+      else if ( 243 < timedata && timedata <= 273 ) {
+        month = '09';
+        day = timedata - 243;
+        if(day < 10){
+          day = '0'+ day
+        }
+        return year+month+day
+      }
+      else if ( 273 < timedata && timedata <= 304 ) {
+        month = '10';
+        day = timedata -273;
+        if(day < 10){
+          day = '0'+ day
+        }
+        return year+month+day
+      }
+      else if ( 304 < timedata && timedata <= 334 ) {
+        month = '11';
+        day = timedata - 304;
+        if(day < 10){
+          day = '0'+ day
+        }
+        return year+month+day
+      }
+      else if ( 334 < timedata && timedata <= 365 ) {
+        month = '12';
+        day = timedata - 334;
+        if(day < 10){
+          day = '0'+ day
+        }
+        return year+month+day
+      }
+    }
+
+
+    function update(date){
+    		d3.select(".date").text(date);
+        stateShapes.style("fill", function(d) {
+            if(typeof d.properties.yyyymmdd[date] === "undefined" ){
+              // console.log(d);
+              return color("0")
+            }else{
+              return color(d.properties.yyyymmdd[date][0].DailyAQI)
+            }
+          });
+    	}
+
+        update(20150101);
+  		d3.select('.dateLabel').text('2015-01-01');
+
+    var slider = d3.select(".slider")
+		.append("input")
+			.attr("type", "range")
+			.attr("min", 1)
+			.attr("max", 365)
+			.attr("value", 1)
+			.on("input", function() {
+        var yyyymmdd = convertTime(this.value);
+        console.log(yyyymmdd);
+  			update(yyyymmdd);
+  			ymd = yyyymmdd.replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3");
+  			d3.select('.dateLabel').text(ymd);
+			});
+
+}
+
+
+
+
+</script>
