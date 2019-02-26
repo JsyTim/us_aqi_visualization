@@ -47,11 +47,12 @@ circle.hidden {
 </style>
 <body>
 <script src="https://d3js.org/d3.v3.min.js"></script>
+<h2 class="label">Scatter Chart<h2>
 <script>
 
-var width = 480,
+var width = 240,
     size = 120,
-    padding = 15;
+    padding = 20;
 
 var x = d3.scale.linear()
     .range([padding / 2, size - padding / 2]);
@@ -72,15 +73,14 @@ var yAxis = d3.svg.axis()
 //var color = d3.scale.category10();
 //var color = d3.scale.linear().range(["rgb(213,222,217)","rgb(69,173,168)","rgb(84,36,55)","rgb(217,91,67)"]);
 var color = d3.scale.threshold()
-  //.domain([10, 20, 30, 40])
+  //.domain(["10", "20", "30"])
   .range(["#ff9d76", "#51eaea", "#ff9d76", "#fb3569"]);
-
 
 d3.csv("avg.csv", function(d) {
     return {
       name: d["name"],
       NO2_AQI: +d["NO2_AQI"],
-	  O3_AQI: +d["O3_AQI"],
+	    O3_AQI: +d["O3_AQI"],
       SO2_AQI: +d["SO2_AQI"],
       CO_AQI: +d["CO_AQI"],
 	  Daily_AQI: +d["Daily_AQI"]
@@ -96,7 +96,7 @@ d3.csv("avg.csv", function(d) {
   traits.forEach(function(trait) {
     domainByTrait[trait] = d3.extent(data, function(d) { return d[trait]; });
   });
-  
+
   console.log(domainByTrait)
 
   xAxis.tickSize(size * n);
