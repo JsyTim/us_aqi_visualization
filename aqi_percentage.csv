@@ -1,0 +1,97 @@
+Group,State,Type,Percentage
+CO  ,Alaska         ,Alaska         ,7.74293E-05
+CO  ,Hawaii         ,Hawaii         ,0.000269505
+CO  ,Oklahoma       ,Oklahoma       ,6.71908E-05
+CO  ,Oregon         ,Oregon         ,0.000200468
+NO2 ,Alabama        ,Alabama        ,0.001626016
+NO2 ,Alaska         ,Alaska         ,0.00828494
+NO2 ,Arizona        ,Arizona        ,0.005412629
+NO2 ,Arkansas       ,Arkansas       ,0.003551327
+NO2 ,California     ,California     ,0.002940194
+NO2 ,Colorado       ,Colorado       ,0.010758436
+NO2 ,Connecticut    ,Connecticut    ,0.001202807
+NO2 ,Delaware       ,Delaware       ,0.00461437
+NO2 ,Florida        ,Florida        ,0.000208464
+NO2 ,Georgia        ,Georgia        ,0.005004934
+NO2 ,Hawaii         ,Hawaii         ,0.000539011
+NO2 ,Illinois       ,Illinois       ,0.003590786
+NO2 ,Indiana        ,Indiana        ,0.004334411
+NO2 ,Iowa           ,Iowa           ,0.00180421
+NO2 ,Kansas         ,Kansas         ,0.005841975
+NO2 ,Kentucky       ,Kentucky       ,0.002780235
+NO2 ,Louisiana      ,Louisiana      ,0.002486058
+NO2 ,Maine          ,Maine          ,0.001948532
+NO2 ,Maryland       ,Maryland       ,0.001336452
+NO2 ,Massachusetts  ,Massachusetts  ,0.009740995
+NO2 ,Minnesota      ,Minnesota      ,0.002694271
+NO2 ,Missouri       ,Missouri       ,0.009299877
+NO2 ,Nevada         ,Nevada         ,0.006137414
+NO2 ,New Hampshire  ,New Hampshire  ,0.000340646
+NO2 ,New Jersey     ,New Jersey     ,0.009622452
+NO2 ,New Mexico     ,New Mexico     ,0.005196785
+NO2 ,New York       ,New York       ,0.011226194
+NO2 ,North Carolina ,North Carolina ,0.001135984
+NO2 ,North Dakota   ,North Dakota   ,0.000889614
+NO2 ,Ohio           ,Ohio           ,0.005880388
+NO2 ,Oklahoma       ,Oklahoma       ,0.001411006
+NO2 ,Oregon         ,Oregon         ,0.006414968
+NO2 ,Pennsylvania   ,Pennsylvania   ,0.001336452
+NO2 ,Rhode Island   ,Rhode Island   ,0.002642276
+NO2 ,South Dakota   ,South Dakota   ,0.003380826
+NO2 ,Texas          ,Texas          ,0.002606081
+NO2 ,Utah           ,Utah           ,0.009254796
+NO2 ,Virginia       ,Virginia       ,0.002271968
+NO2 ,Washington     ,Washington     ,0.006533101
+NO2 ,Wyoming        ,Wyoming        ,6.71908E-05
+O3  ,Alabama        ,Alabama        ,0.022276423
+O3  ,Alaska         ,Alaska         ,0.013859853
+O3  ,Arizona        ,Arizona        ,0.018977614
+O3  ,Arkansas       ,Arkansas       ,0.020771911
+O3  ,California     ,California     ,0.02145005
+O3  ,Colorado       ,Colorado       ,0.013631808
+O3  ,Connecticut    ,Connecticut    ,0.023187437
+O3  ,Delaware       ,Delaware       ,0.019775873
+O3  ,Florida        ,Florida        ,0.02418178
+O3  ,Georgia        ,Georgia        ,0.019385309
+O3  ,Hawaii         ,Hawaii         ,0.023446975
+O3  ,Illinois       ,Illinois       ,0.020663957
+O3  ,Indiana        ,Indiana        ,0.019174258
+O3  ,Iowa           ,Iowa           ,0.022586034
+O3  ,Kansas         ,Kansas         ,0.016941726
+O3  ,Kentucky       ,Kentucky       ,0.021610009
+O3  ,Louisiana      ,Louisiana      ,0.021769804
+O3  ,Maine          ,Maine          ,0.022441712
+O3  ,Maryland       ,Maryland       ,0.023053792
+O3  ,Massachusetts  ,Massachusetts  ,0.014649249
+O3  ,Minnesota      ,Minnesota      ,0.021695973
+O3  ,Missouri       ,Missouri       ,0.014651693
+O3  ,Nevada         ,Nevada         ,0.01825283
+O3  ,New Hampshire  ,New Hampshire  ,0.024049598
+O3  ,New Jersey     ,New Jersey     ,0.014767792
+O3  ,New Mexico     ,New Mexico     ,0.019193459
+O3  ,New York       ,New York       ,0.013164049
+O3  ,North Carolina ,North Carolina ,0.02325426
+O3  ,North Dakota   ,North Dakota   ,0.02350063
+O3  ,Ohio           ,Ohio           ,0.016505179
+O3  ,Oklahoma       ,Oklahoma       ,0.022912047
+O3  ,Oregon         ,Oregon         ,0.017774808
+O3  ,Pennsylvania   ,Pennsylvania   ,0.02298697
+O3  ,Rhode Island   ,Rhode Island   ,0.021747967
+O3  ,South Dakota   ,South Dakota   ,0.021009418
+O3  ,Tennessee      ,Tennessee      ,0.024390244
+O3  ,Texas          ,Texas          ,0.021784163
+O3  ,Utah           ,Utah           ,0.015135448
+O3  ,Virginia       ,Virginia       ,0.022118276
+O3  ,Washington     ,Washington     ,0.017857143
+O3  ,Wyoming        ,Wyoming        ,0.024323053
+SO2 ,Alabama        ,Alabama        ,0.000487805
+SO2 ,Alaska         ,Alaska         ,0.002168022
+SO2 ,Arkansas       ,Arkansas       ,6.70062E-05
+SO2 ,Hawaii         ,Hawaii         ,0.000134753
+SO2 ,Illinois       ,Illinois       ,0.000135501
+SO2 ,Indiana        ,Indiana        ,0.000881575
+SO2 ,Kansas         ,Kansas         ,0.001606543
+SO2 ,Louisiana      ,Louisiana      ,0.000134382
+SO2 ,Missouri       ,Missouri       ,0.000438673
+SO2 ,Ohio           ,Ohio           ,0.002004678
+SO2 ,Pennsylvania   ,Pennsylvania   ,6.68226E-05
