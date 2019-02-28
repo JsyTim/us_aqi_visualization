@@ -41,7 +41,7 @@ form {
 }
 
 </style>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
 <script>
 
 var margin = { top: 40, right: 10, bottom: 10, left: 10 },
@@ -49,7 +49,6 @@ var margin = { top: 40, right: 10, bottom: 10, left: 10 },
     height = 650 - margin.top - margin.bottom;
 
 var percentage = function(d) { return d["percentage"]; };
-//var revenue    = function(d) { return d["revenue"]; };
 
 var colorScale = d3.scale.category20c();
 var color = function(d) { return d.children ? colorScale(d["Group"]) : null; }
