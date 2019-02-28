@@ -1,7 +1,8 @@
 # US AQI Visualization
 ## Video：https://youtu.be/G3g-SACQhdc
-## Data description: U.S. Air Pollution Data reference from ![URL](https://data.world/data-society/us-air-pollution-data) 
-
+## Data description: U.S. Air Pollution Data reference from [URL](https://data.world/data-society/us-air-pollution-data) 
+>1. It includes 4 categories air pollution items -- NO2, O3, SO2, CO<br>
+ 2. The raw data includes over one millon lines, so I do some data processing. And I only visualize the data of 2015
 ## live demo: https://jsytim.github.io/us_aqi_visualization/
 ## Finding:
  1. The largest source of pollution is O3, and the next is NO2.
