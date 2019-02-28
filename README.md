@@ -2,14 +2,14 @@
 ## Video：https://youtu.be/G3g-SACQhdc
 ## Data description: U.S. Air Pollution Data reference from ![URL](https://data.world/data-society/us-air-pollution-data) 
 
-## ![live demo]: https://jsytim.github.io/us_aqi_visualization/
+## live demo: https://jsytim.github.io/us_aqi_visualization/
 ## Finding:
  1. The largest source of pollution is O3, and the next is NO2.
  ![image](https://github.com/JsyTim/us_aqi_visualization/blob/master/treemap.png)
  2. The O3 is proportional to Daily AQI
  ![image](https://github.com/JsyTim/us_aqi_visualization/blob/master/scatter.png)
  ## Story behind the features in [paper](http://www.myweb.ttu.edu/tnhondan/file/TimeExplorer.pdf)
- [image](https://github.com/JsyTim/us_aqi_visualization/blob/master/paper.png)
+ ![image](https://github.com/JsyTim/us_aqi_visualization/blob/master/paper.png)
  >1. Early 1990s recession and Financial crisis of 2007–2008 result in the growth of us unemployment rate<br>
  The early 1990s recession describes the period of economic downturn affecting much of the Western world in the early 1990s. Primary factors believed to have led to the recession include the following: restrictive monetary policy enacted by central banks, primarily in response to inflation concerns, the loss of consumer and business confidence as a result of the 1990 oil price shock, the end of the Cold War and the subsequent decrease in defense spending, the savings and loan crisis and a slump in office construction resulting from overbuilding during the 1980s.The US economy returned to 1980s level growth by 1993 and global GDP growth by 1994.<br>
  The financial crisis of 2007–2008, also known as the global financial crisis and the 2008 financial crisis, is considered by many economists to have been the most serious financial crisis since the Great Depression of the 1930s. It began in 2007 with a crisis in the subprime mortgage market in the United States, and developed into a full-blown international banking crisis with the collapse of the investment bank Lehman Brothers on September 15, 2008.
